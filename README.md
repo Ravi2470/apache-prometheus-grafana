@@ -14,8 +14,7 @@ kubectl create -f apache-metrices-svc.yml
 Now you have to setup prometheus.By default prometheus uses prometheus.yml file for configuration and we can create configmap to override
 or implement changes in configuration.So we will create a configmap.
 
-kubectl create -f prometheus-configmap.yml  ## we will mount this configmap in prometheus-deployment.yml file,so that we can add targets in prometheus.yml 
-Kubectl create -f prometheus-deployment.yml   
+kubectl create -f prometheus-configmap.yml          ## we will mount this configmap in prometheus-deployment.yml file                                       Kubectl create -f prometheus-deployment.yml         ##  so that we can add targets in prometheus.yml
 
 Now setup grafana 
 
