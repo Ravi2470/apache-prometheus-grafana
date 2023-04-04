@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apache-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apache-exporter
+  template:
+    metadata:
+      labels:
+        app: apache-exporter
+    spec:
+      containers:
+      - name: apache-exporter
+        image: lusotycoon/apache-exporter
+        ports:
+        - containerPort: 9117
+        args:
+        - --scrape_uri=http://apache:80/server-status?auto
+        
