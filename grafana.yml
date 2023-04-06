@@ -12,6 +12,13 @@ spec:
       labels:
         app: grafana
     spec:
+      initContainers:
+      - name: change-permissions
+        image: busybox
+        command: ["sh", "-c", "chmod -R 777 /var/lib/grafana"]
+        volumeMounts:
+          - name: grafana-pv
+            mountPath: /var/lib/grafana
       containers:
       - name: grafana
         image: grafana/grafana:latest
@@ -20,6 +27,13 @@ spec:
         env:
         - name: GF_INSTALL_PLUGINS
           value: grafana-piechart-panel,grafana-simple-json-datasource
+        volumeMounts:
+        - name: grafana-pv
+          mountPath: /var/lib/grafana
+      volumes:
+      - name: grafana-pv
+        persistentVolumeClaim:
+          claimName: grafana-pvc
 ---
 apiVersion: v1
 kind: Service
