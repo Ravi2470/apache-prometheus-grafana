@@ -12,7 +12,7 @@ kubectl create -f apache.yml
     <Location "/server-status">
         SetHandler server-status 
         Require all granted 
-    </Location> ###
+    </Location> 
 
 ### After that You have to setup apache-exporter which will collect metrices from apache and export it to prometheus. ###
 
