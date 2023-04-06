@@ -33,7 +33,8 @@ Kubectl create -f prometheus-deployment.yml
 Persistent Volume claims.After creating PV and PVC you can save dashboards in it.So, that in case your grafana pod restarts, you can have your 
 dashboards saved.
 
-kubectl create -f grafana-pv.yml                         ## you pv path will depend on driver you used for minikube e.g (docker,vm) ##
+kubectl create -f grafana-pv.yml                         
+## you pv path will depend on driver you used for minikube e.g (docker,vm) ##
 
 kubectl create -f grafana-pvc.yml
 
