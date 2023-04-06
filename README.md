@@ -2,9 +2,17 @@
 
 You can setup a prometheus-grafana monitoring setup which will collect apache and prometheus metrics and show it on grafana in visual graphs.
 
-first you have to setup an apache server in minikube 
+first you have to setup an apache server in minikube. If you use your apache image in apache.yml file you have to made a few changes in httpd.conf
+file to get metrics.
 
-kubectl create -f apache.yml  
+kubectl create -f apache.yml          ### you have to add this lines in httpd.conf in /usr/local/apache2/conf ###
+                                           ###
+                                           <Location "/server-status">
+                                               SetHandler server-status 
+                                               Require all granted
+                                           </Location>
+                                           ###
+
 
 After that You have to setup apache-exporter which will collect metrices from apache and export it to prometheus.
 
