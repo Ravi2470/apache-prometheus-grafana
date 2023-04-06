@@ -9,10 +9,10 @@ kubectl create -f apache.yml
 
 ### you have to add this lines in httpd.conf in /usr/local/apache2/conf ###
 
-<Location "/server-status">
-    SetHandler server-status
-    Require all granted
-</Location>
+### <Location "/server-status">
+    ### SetHandler server-status
+    ### Require all granted
+### </Location>
 
 ### After that You have to setup apache-exporter which will collect metrices from apache and export it to prometheus. ###
 
@@ -24,14 +24,14 @@ Now you have to setup prometheus.By default prometheus uses prometheus.yml file 
 or implement changes in configuration.So we will create a configmap.
 
 kubectl create -f prometheus-configmap.yml
-## we will mount this configmap in prometheus-deployment.yml file
+## we will mount this configmap in prometheus-deployment.yml file, so that we can add targets in prometheus.yml ##
+
 
 Kubectl create -f prometheus-deployment.yml 
-##  so that we can add targets in prometheus.yml
 
-Now setup grafana. If you want to save dashboards rather then importing dashboards again and again, you have to create Persistent Volume and 
+### Now setup grafana. If you want to save dashboards rather then importing dashboards again and again, you have to create Persistent Volume and 
 Persistent Volume claims.After creating PV and PVC you can save dashboards in it.So, that in case your grafana pod restarts, you can have your 
-dashboards saved.
+dashboards saved. ###
 
 kubectl create -f grafana-pv.yml
 
