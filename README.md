@@ -14,9 +14,10 @@ kubectl create -f apache.yml
     Require all granted
 </Location>
 
-After that You have to setup apache-exporter which will collect metrices from apache and export it to prometheus.
+### After that You have to setup apache-exporter which will collect metrices from apache and export it to prometheus. ###
 
 kubectl create -f apache-exporter.yml
+
 kubectl create -f apache-metrices-svc.yml
 
 Now you have to setup prometheus.By default prometheus uses prometheus.yml file for configuration and we can create configmap to override
@@ -24,6 +25,7 @@ or implement changes in configuration.So we will create a configmap.
 
 kubectl create -f prometheus-configmap.yml
 ## we will mount this configmap in prometheus-deployment.yml file
+
 Kubectl create -f prometheus-deployment.yml 
 ##  so that we can add targets in prometheus.yml
 
@@ -32,10 +34,12 @@ Persistent Volume claims.After creating PV and PVC you can save dashboards in it
 dashboards saved.
 
 kubectl create -f grafana-pv.yml
+
 kubectl create -f grafana-pvc.yml
+
 kubectl create -f grafana.yml
 
-This will create whole monitoring Setup.
+### This will create whole monitoring Setup. ###
 
 Now login to grafana and add prometheus as Datasource.You have to enter the url of prometheus in datasource.After successfully adding prometheus as 
 data source you can import dashboards from grafana's official website or create one by yourself.
