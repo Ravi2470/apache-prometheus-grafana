@@ -29,9 +29,7 @@ kubectl create -f prometheus-configmap.yml
 
 Kubectl create -f prometheus-deployment.yml 
 
-# Now setup grafana. If you want to save dashboards rather then importing dashboards again and again, you have to create Persistent Volume and 
-# Persistent Volume claims.After creating PV and PVC you can save dashboards in it.So, that in case your grafana pod restarts, you can have your 
-# dashboards saved.
+# Now setup grafana. If you want to save dashboards rather then importing dashboards again and again, you have to create Persistent Volume and Persistent Volume claims.After creating PV and PVC you can save dashboards in it.So, that in case your grafana pod restarts, you can have your dashboards saved.
 
 kubectl create -f grafana-pv.yml                         
 # you pv path will depend on driver you used for minikube e.g (docker,vm)
