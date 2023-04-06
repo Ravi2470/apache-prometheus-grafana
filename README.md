@@ -9,7 +9,7 @@ kubectl create -f apache.yml
 
 ### you have to add this lines in httpd.conf in /usr/local/apache2/conf ###
 
-### <Location "/server-status">
+    <Location "/server-status">
         SetHandler server-status 
         Require all granted 
     </Location> ###
