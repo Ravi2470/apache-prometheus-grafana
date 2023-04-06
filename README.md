@@ -16,8 +16,12 @@ or implement changes in configuration.So we will create a configmap.
 
 kubectl create -f prometheus-configmap.yml          ## we will mount this configmap in prometheus-deployment.yml file                                       Kubectl create -f prometheus-deployment.yml         ##  so that we can add targets in prometheus.yml
 
-Now setup grafana 
+Now setup grafana. If you want to save dashboards rather then importing dashboards again and again, you have to create Persistent Volume and 
+Persistent Volume claims.After creating PV and PVC you can save dashboards in it.So, that in case your grafana pod restarts, you can have your 
+dashboards saved.
 
+kubectl create -f grafana-pv.yml
+kubectl create -f grafana-pvc.yml
 kubectl create -f grafana.yml
 
 This will create whole monitoring Setup.
