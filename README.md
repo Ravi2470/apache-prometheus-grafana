@@ -5,14 +5,14 @@ You can setup a prometheus-grafana monitoring setup which will collect apache an
 first you have to setup an apache server in minikube. If you use your apache image in apache.yml file you have to made a few changes in httpd.conf
 file to get metrics.
 
-kubectl create -f apache.yml          ### you have to add this lines in httpd.conf in /usr/local/apache2/conf ###
-                                           ###
-                                           <Location "/server-status">
-                                               SetHandler server-status 
-                                               Require all granted
-                                           </Location>
-                                           ###
+kubectl create -f apache.yml         
 
+### you have to add this lines in httpd.conf in /usr/local/apache2/conf ###
+
+<Location "/server-status">
+    SetHandler server-status
+    Require all granted
+</Location>
 
 After that You have to setup apache-exporter which will collect metrices from apache and export it to prometheus.
 
@@ -22,7 +22,10 @@ kubectl create -f apache-metrices-svc.yml
 Now you have to setup prometheus.By default prometheus uses prometheus.yml file for configuration and we can create configmap to override
 or implement changes in configuration.So we will create a configmap.
 
-kubectl create -f prometheus-configmap.yml          ## we will mount this configmap in prometheus-deployment.yml file                                       Kubectl create -f prometheus-deployment.yml         ##  so that we can add targets in prometheus.yml
+kubectl create -f prometheus-configmap.yml
+## we will mount this configmap in prometheus-deployment.yml file
+Kubectl create -f prometheus-deployment.yml 
+##  so that we can add targets in prometheus.yml
 
 Now setup grafana. If you want to save dashboards rather then importing dashboards again and again, you have to create Persistent Volume and 
 Persistent Volume claims.After creating PV and PVC you can save dashboards in it.So, that in case your grafana pod restarts, you can have your 
