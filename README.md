@@ -7,14 +7,14 @@ file to get metrics.
 
 kubectl create -f apache.yml         
 
-### you have to add this lines in httpd.conf in /usr/local/apache2/conf ###
+# you have to add this lines in httpd.conf in /usr/local/apache2/conf 
 
     <Location "/server-status">
         SetHandler server-status 
         Require all granted 
     </Location> 
 
-### After that You have to setup apache-exporter which will collect metrices from apache and export it to prometheus. ###
+# After that You have to setup apache-exporter which will collect metrices from apache and export it to prometheus.
 
 kubectl create -f apache-exporter.yml
 
@@ -29,18 +29,18 @@ kubectl create -f prometheus-configmap.yml
 
 Kubectl create -f prometheus-deployment.yml 
 
-### Now setup grafana. If you want to save dashboards rather then importing dashboards again and again, you have to create Persistent Volume and 
-## Persistent Volume claims.After creating PV and PVC you can save dashboards in it.So, that in case your grafana pod restarts, you can have your 
+# Now setup grafana. If you want to save dashboards rather then importing dashboards again and again, you have to create Persistent Volume and 
+# Persistent Volume claims.After creating PV and PVC you can save dashboards in it.So, that in case your grafana pod restarts, you can have your 
 # dashboards saved.
 
 kubectl create -f grafana-pv.yml                         
-## you pv path will depend on driver you used for minikube e.g (docker,vm) ##
+# you pv path will depend on driver you used for minikube e.g (docker,vm)
 
 kubectl create -f grafana-pvc.yml
 
 kubectl create -f grafana.yml
 
-### This will create whole monitoring Setup. ###
+# This will create whole monitoring Setup.
 
 Now login to grafana and add prometheus as Datasource.You have to enter the url of prometheus in datasource.After successfully adding prometheus as 
 data source you can import dashboards from grafana's official website or create one by yourself.
